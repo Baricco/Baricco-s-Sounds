@@ -7,7 +7,10 @@ import Card from './Card';
 export function renderPage(beats){
   ReactDOM.render(
       <React.StrictMode>
-          {beats}
+        <h1>Baricco's Beats</h1>
+        <div className = "CardsContainer">
+          {beats.map(card => <div>{card.render()}</div>)}
+        </div>
       </React.StrictMode>,
       document.getElementById("root")
   );
@@ -16,10 +19,15 @@ export function renderPage(beats){
 
 function loadBeats() {
   var beats = [];
-  beats.push(new Card("Beat #1", "beat/path/beat.wav", "image/directory/image.png"));
-  beats.push(new Card("Beat #2", "beat/path/beat.wav", "image/directory/image.png"));
-  beats.push(new Card("Beat #3", "beat/path/beat.wav", "image/directory/image.png"));
-  beats.push(new Card("Beat #4", "beat/path/beat.wav", "image/directory/image.png"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
+  beats.push(new Card("Skull"));
   return beats;
 }
 

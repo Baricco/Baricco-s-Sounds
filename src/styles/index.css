@@ -1,9 +1,9 @@
 :root {
   --white: #F1F1F1;
   --grey: #5e5e66;
-  --light_grey: #909096;
-  --dark_grey: #2e2e33;
-  --black: #181818;
+  --light-grey: #909096;
+  --dark-grey: #1a1a33;
+  --black: #0a0a23;
 }
 
 body {
@@ -12,7 +12,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;;
   text-align: center;
   align-items: center;
-  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.CardsContainer {
+  display:flex;
+  justify-content:space-around;
+  width: 100%;
 }

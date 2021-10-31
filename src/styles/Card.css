@@ -1,4 +1,31 @@
 .Card {
-    border: 2px solid var(--white);
-    background-color: var(--grey);
+    background-color: var(--dark-grey);
+    width:300px;
+    height: 300px;
+    margin:70px;
+    border-radius: 5px;
+}
+
+.Content {
+    background-color: var(--black);
+    height: 80%;
+    text-align: left;
+    padding-left:30px;
+}
+
+.Thumbnail {
+    width:300px;
+    height:300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.publicationDate {
+    opacity: 70%;
+}
+
+.playButton {
+    width:40px;
+    height: 40px;
+    align-self: center;
 }
