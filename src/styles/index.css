@@ -16,8 +16,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.PageTitle {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 52px;
+  letter-spacing: 2.5px;  
+}
+
 .CardsContainer {
-  display:flex;
   justify-content:space-around;
   width: 100%;
 }

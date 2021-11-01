@@ -1,9 +1,11 @@
 .Card {
+    float:left;
     background-color: var(--dark-grey);
     width:300px;
     height: 300px;
     margin:70px;
     border-radius: 5px;
+    margin-bottom: 120px;
 }
 
 .Content {
