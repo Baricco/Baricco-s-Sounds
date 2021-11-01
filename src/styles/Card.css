@@ -3,9 +3,8 @@
     background-color: var(--dark-grey);
     width:300px;
     height: 300px;
-    margin:70px;
     border-radius: 5px;
-    margin-bottom: 120px;
+    margin: 70px 30px 120px 30px;
 }
 
 .Content {
@@ -26,7 +25,7 @@
     opacity: 70%;
 }
 
-.playButton {
+.play-pauseButton {
     width:40px;
     height: 40px;
     align-self: center;
