@@ -9,6 +9,12 @@ export default class Card {
     this.image = this.path + this.name + ".jpg"
     this.genre = genre;
   }
+
+  playSong() {
+    var beat = new Audio(this.path + this.name + ".wav");
+    beat.play();
+  }
+
   render() {
     return (
       <div className = "Card">
@@ -16,7 +22,7 @@ export default class Card {
         <div className="Content">
           <h3>{this.name}</h3>
           <p className="publicationDate">{this.genre}</p>
-          <img src="img/play-button.png" className="playButton"/>
+          <img src="img/play-button.png" className="playButton" onClick={playSong}/>
         </div>
       </div>
     );
