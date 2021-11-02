@@ -5,10 +5,16 @@
 
 :root {
   --white: #F1F1F1;
-  --grey: #5e5e66;
-  --light-grey: #909096;
-  --dark-grey: #1c1c1c;
+  --light-grey: #3c3c3c;
+  --grey: #1c1c1c;
+  --dark-grey: #0c0c0c;
   --black: #080808;
+}
+
+.bottomDiv {
+  height: 0px;
+  margin-top:7%;
+  bottom:0px;
 }
 
 body {
@@ -44,4 +50,10 @@ body {
   width:100%;
   height: 7%;
   visibility: hidden;
+  padding: 10px;
+}
+
+#BarAudioPlayer .div {
+  width: 100%;
+  height: 100%;
 }

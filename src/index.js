@@ -20,6 +20,7 @@ function renderPage(beats){
           {beats.map(card => card.render())}
         </div>
         <div id = "BarAudioPlayer">{barAudioPlayer.render()}</div>
+        <div className="bottomDiv"></div>
       </React.StrictMode>,
       document.getElementById("root")
   );
