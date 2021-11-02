@@ -24,7 +24,6 @@ export default class BarAudioPlayer {
                 </div>
             </div>
         </div>
-        <div id="posX"></div>
         <h1>{this.card.name}</h1>
       </div>
     );

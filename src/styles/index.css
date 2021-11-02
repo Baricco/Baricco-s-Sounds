@@ -1,24 +1,32 @@
+@font-face {
+	font-family: Zen-Kurenaido;
+	src: url(/src/styles/fonts/ZenKurenaido-Regular.ttf);
+}
+
 :root {
   --white: #F1F1F1;
   --grey: #5e5e66;
   --light-grey: #909096;
-  --dark-grey: #1a1a33;
-  --black: #0a0a23;
+  --dark-grey: #1c1c1c;
+  --black: #080808;
 }
 
 body {
   background-color: var(--black);
   color:var(--white);
-  font-family: Arial, Helvetica, sans-serif;;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 2.5px;  
   text-align: center;
+  padding-left: 36px;
   align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .PageTitle {
-  font-family: 'Oxygen', sans-serif;
-  font-size: 52px;
+	font-family: Zen-Kurenaido;
+  font-size: 64px;
+  word-spacing: 5px;
   letter-spacing: 2.5px;  
 }
 
@@ -31,7 +39,6 @@ body {
   position: fixed;
   background-color: var(--dark-grey);
   color:var(--white);
-  font-family: Arial, Helvetica, sans-serif;
   bottom: 0px;
   left:0px;
   width:100%;
