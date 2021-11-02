@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import Card from './Card';
+import BarAudioPlayer from './BarAudioPlayer';
 
 var beatOnPlay = {
   id: "",
   beat: null,
 };
+
+var barAudioPlayer = new BarAudioPlayer(new Card("Title", "Genre"));
 
 function renderPage(beats){
   ReactDOM.render(
@@ -15,6 +18,7 @@ function renderPage(beats){
         <div className = "CardsContainer">
           {beats.map(card => card.render())}
         </div>
+        <div id = "BarAudioPlayer">{barAudioPlayer.render()}</div>
       </React.StrictMode>,
       document.getElementById("root")
   );
@@ -47,4 +51,9 @@ function changeBeat(newBeat) { beatOnPlay = newBeat; }
 
 renderPage(loadBeats());
 
-export {beatOnPlay, renderPage, changeBeat};
+export { beatOnPlay,
+         renderPage,
+         changeBeat,
+         barAudioPlayer,
+         ReactDOM
+        };

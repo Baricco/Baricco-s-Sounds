@@ -1,6 +1,6 @@
-import AudioPlayer from './AudioPlayer';
 import './styles/Card.css';
 import * as index from './index';
+import BarAudioPlayer from './BarAudioPlayer';
 
 export default class Card {
 
@@ -14,33 +14,40 @@ export default class Card {
   }
 
   playSong() {
-      if(index.beatOnPlay.beat != null && index.beatOnPlay.id != this.id) {  //stop the song that is currently playing
-        if (index.beatOnPlay.id == null) index.beatOnPlay.id = this.id;
-        index.beatOnPlay.beat.pause();
-        //this.resumeTime = 0;
-        document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
-      }
-      else if (index.beatOnPlay.id == this.id) {
-        console.log(index.beatOnPlay.id + "==" +  this.id);
-        index.beatOnPlay.beat.pause();
-        document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
-        this.resumeTime = index.beatOnPlay.beat.currentTime;
-        index.beatOnPlay.id = null;
-        return;
-      }
+    if(index.beatOnPlay.beat != null && index.beatOnPlay.id != this.id) {  //stop the song that is currently playing
+      index.beatOnPlay.beat.pause();
+      index.beatOnPlay.beat.currentTime = 0;
+      if (index.beatOnPlay.id == null) { index.beatOnPlay.id = this.id; }
+      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
+    }
+    else if (index.beatOnPlay.id == this.id) {
+      index.beatOnPlay.beat.pause();
+      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
+      this.resumeTime = index.beatOnPlay.beat.currentTime;
+     index.beatOnPlay.id = null;
+      return;
+    }
+
     index.changeBeat({                                                //pick the new song
       id: this.id,
       beat: new Audio(this.path + this.name + ".wav"),
-      playButton: "img/pause-button.png"
     });
 
     index.beatOnPlay.beat.currentTime = this.resumeTime;
     index.beatOnPlay.beat.play();                                   //play the new song
     document.getElementById(this.id + "play-pauseButton").src = "img/pause-button.png";
+    
   }
 
   startSong() {
     this.playSong();
+    index.barAudioPlayer.changeBeat(this);
+    document.getElementById("BarAudioPlayer").style.visibility = "visible";
+    index.ReactDOM.render(
+      index.barAudioPlayer.render(),
+      document.getElementById("BarAudioPlayer")
+    );
+
   }
 
   render() {
