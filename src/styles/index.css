@@ -12,9 +12,11 @@
 }
 
 .bottomDiv {
-  height: 0px;
-  margin-top:7%;
-  bottom:0px;
+  height: 100px; 
+  width:500px;
+  margin: 0;
+  clear: both;
+  width:100%;
 }
 
 body {
@@ -23,8 +25,6 @@ body {
   font-family: 'Oxygen', sans-serif;
   letter-spacing: 2.5px;  
   text-align: center;
-  padding-left: 36px;
-  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,6 +38,9 @@ body {
 
 .CardsContainer {
   justify-content:space-around;
+  height: 100%;
+  align-items: center;
+  align-self: center;
   width: 100%;
 }
 

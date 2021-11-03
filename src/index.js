@@ -19,8 +19,8 @@ function renderPage(beats){
         <div className = "CardsContainer">
           {beats.map(card => card.render())}
         </div>
-        <div id = "BarAudioPlayer">{barAudioPlayer.render()}</div>
         <div className="bottomDiv"></div>
+        <div id = "BarAudioPlayer">{barAudioPlayer.render()}</div>
       </React.StrictMode>,
       document.getElementById("root")
   );
