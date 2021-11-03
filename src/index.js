@@ -5,7 +5,7 @@ import Card from './Card';
 import BarAudioPlayer from './BarAudioPlayer';
 
 var beatOnPlay = {
-  id: "",
+  id: "Skullplay-pauseButton",
   beat: null,
   audioPlayerUpdater: null
 };

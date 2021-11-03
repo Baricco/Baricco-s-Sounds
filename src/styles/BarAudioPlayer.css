@@ -3,7 +3,6 @@
   display: flex;
   width: 40%;
   border-radius: 10px;
-  top: 1.7rem;
   left:30%;
   position: relative;
   background-color: var(--grey);
@@ -15,21 +14,29 @@
   width:0%;
 }
 
-.songTitle {
+.songAttributes {
   position: relative;
   margin-left: 7%;
   margin-top: 0px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.songTitle {
   width: fit-content;
+  margin-left:6%;
+  margin-top: 0px;
+  margin-bottom: 1%;
 }
 
 .songGenre {
-  position: relative;
-  margin-left: 7%;
   opacity: 70%;
-  bottom:10px;
   font-weight: 200;
   font-size: small;
   width: fit-content;
+  margin-left:6%;
+  margin-top: 0px;
 }
 
 .songThumbnail {
@@ -39,8 +46,7 @@
   border-radius: 5px;
   position: absolute;
   left:0px;
-  bottom:10px;
-  margin-left: 1.5%;
+  bottom:0px;
 }
 
 #audio-progress-handle {
@@ -63,4 +69,18 @@
 #draggable-point {
   left:0%;
   position:absolute;
+}
+
+#audio-player-container {
+  position: relative;
+  bottom:15px;
+}
+
+.audioPlayerBarPlayPauseButton {
+  position: relative;
+  width:40px;
+  height:40px;
+  margin:0px;
+  padding:0px;
+  top:0px;
 }

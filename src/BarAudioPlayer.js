@@ -15,10 +15,12 @@ export default class BarAudioPlayer {
   render() {
     return (
       <div>
+        <div className = "songAttributes">
+          <img src = {this.card.image} className = "songThumbnail"/>
+          <h4 className = "songTitle">{this.card.name}</h4>
+          <h2 className = "songGenre">{this.card.genre}</h2>
+        </div>
         {audioPlayerBar}
-        <img src = {this.card.image} className = "songThumbnail"/>
-        <h4 className = "songTitle">{this.card.name}</h4>
-        <h2 className = "songGenre">{this.card.genre}</h2>
       </div>
     );
   }
@@ -38,13 +40,16 @@ export default class BarAudioPlayer {
 var audioPlayerBar = (
 
   <div id="audio-player-container">
-  <div className="audio-progress" id="audio-progress">
-      <div id="draggable-point" className="ui-widget-content">
-      <div id="audio-progress-handle"></div>
-      </div>
-        <div id="audio-progress-bar" className="bar">
+    <img src = "img/play-button.png" className = "audioPlayerBarPlayPauseButton"/>
+    <div className="audio-progress" id="audio-progress">
+        <div id="draggable-point" className="ui-widget-content">
+        <div id="audio-progress-handle"></div>
+        </div>
+          <div id="audio-progress-bar" className="bar">
+        </div>
       </div>
     </div>
-  </div>
 
 );
+
+//    <img src ={document.getElementById(index.beatOnPlay.id + "play-pauseButton").src} />
