@@ -21,11 +21,13 @@ export default class Card {
       index.barAudioPlayer.currentTime = 0.00;
       if (index.beatOnPlay.id == null) { index.beatOnPlay.id = this.id; }
       document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
+      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.png";
     }
     else if (index.beatOnPlay.id == this.id) {
       index.beatOnPlay.beat.pause();
       clearInterval(index.beatOnPlay.audioPlayerUpdater);
       document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
+      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.png";
       this.resumeTime = index.beatOnPlay.beat.currentTime;
      index.beatOnPlay.id = null;
       return;
@@ -41,6 +43,7 @@ export default class Card {
     index.beatOnPlay.beat.play();                                   //play the new song
     index.beatOnPlay.audioPlayerUpdater = setInterval(() => index.barAudioPlayer.updateAudioBar(), 10);
     document.getElementById(this.id + "play-pauseButton").src = "img/pause-button.png";
+    document.getElementById("audioPlayerBarPlayPauseButton").src = "img/pause-button.png";
     
   }
 

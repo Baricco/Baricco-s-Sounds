@@ -20,7 +20,9 @@ export default class BarAudioPlayer {
           <h4 className = "songTitle">{this.card.name}</h4>
           <h2 className = "songGenre">{this.card.genre}</h2>
         </div>
-        {audioPlayerBar}
+        <div  className = "AudioPlayerButtons">
+          {audioPlayerBar}
+        </div>
       </div>
     );
   }
@@ -29,6 +31,7 @@ export default class BarAudioPlayer {
     if (index.beatOnPlay.beat.currentTime >= index.beatOnPlay.beat.duration) {      //if the song finishes, reset the bar
         this.currentTime = 0.00;
         document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
+        document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.png";
         clearInterval(this.card.audioPlayerUpdater)
     }
     index.barAudioPlayer.currentTime += 0.01;
@@ -40,7 +43,7 @@ export default class BarAudioPlayer {
 var audioPlayerBar = (
 
   <div id="audio-player-container">
-    <img src = "img/play-button.png" className = "audioPlayerBarPlayPauseButton"/>
+    <img src = "img/pause-button.png" id = "audioPlayerBarPlayPauseButton"/>
     <div className="audio-progress" id="audio-progress">
         <div id="draggable-point" className="ui-widget-content">
         <div id="audio-progress-handle"></div>

@@ -9,24 +9,24 @@
 }
 .audio-progress .bar {
   height: 100%;
-  background-color: #4aaa2a;
+  background-color: var(--purple);
   border-radius: 10px;
   width:0%;
 }
 
 .songAttributes {
   position: relative;
-  margin-left: 7%;
-  margin-top: 0px;
-  margin-left: 10px;
-  margin-bottom: 0px;
-  display: block;
+  margin: 0px;
+  left:1%;
+  float:left;
+  height: max-content;
+  width: max-content;
 }
 
 .songTitle {
-  width: fit-content;
-  margin-left:6%;
-  margin-top: 0px;
+  width: max-content;
+  margin-left:110px;
+  margin-top: 2px;
   margin-bottom: 1%;
 }
 
@@ -35,8 +35,7 @@
   font-weight: 200;
   font-size: small;
   width: fit-content;
-  margin-left:6%;
-  margin-top: 0px;
+  margin-left:110px;
 }
 
 .songThumbnail {
@@ -76,11 +75,14 @@
   bottom:15px;
 }
 
-.audioPlayerBarPlayPauseButton {
+#audioPlayerBarPlayPauseButton {
   position: relative;
   width:40px;
   height:40px;
   margin:0px;
   padding:0px;
   top:0px;
+}
+
+.AudioPlayerButtons {
 }

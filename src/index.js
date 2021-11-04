@@ -39,6 +39,7 @@ function loadBeats() {
   beats.push(new Card("Shadow", "Drill"));
   beats.push(new Card("Giaguari", "Trap"));
   beats.push(new Card("Ethereal", "Trap"));
+  beats.push(new Card("Für Elise Remix", "Dubstep"));
 
   return beats;
 }
