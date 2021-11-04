@@ -81,8 +81,38 @@
   height:40px;
   margin:0px;
   padding:0px;
+  margin-bottom: 10px;
   top:0px;
 }
 
 .AudioPlayerButtons {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  bottom:40px;
+}
+
+.audioPlayerShuffle {
+  position: relative;
+  width:32px;
+  height:32px;
+  margin:0px;
+  padding:0px;
+  margin-bottom: 10px;
+  top:0px;
+  margin-right: 25px;
+  margin-bottom: 15px;
+}
+
+.audioPlayerRepeat {
+  position: relative;
+  width:27px;
+  height:27px;
+  margin:0px;
+  padding:0px;
+  margin-bottom: 10px;
+  top:0px;
+  margin-left: 25px;
+  margin-bottom: 15px;
 }

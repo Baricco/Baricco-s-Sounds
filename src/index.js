@@ -10,6 +10,8 @@ var beatOnPlay = {
   audioPlayerUpdater: null
 };
 
+var beats = [];
+
 var barAudioPlayer = new BarAudioPlayer(new Card("Title", "Genre"));
 
 function renderPage(beats){
@@ -28,7 +30,6 @@ function renderPage(beats){
 
 
 function loadBeats() {
-  var beats = [];
   beats.push(new Card("Skull", "Trap"));
   beats.push(new Card("Alone pt. 3", "Trap"));
   beats.push(new Card("Crazy Train", "Trap"));
@@ -41,16 +42,17 @@ function loadBeats() {
   beats.push(new Card("Ethereal", "Trap"));
   beats.push(new Card("Für Elise Remix", "Dubstep"));
 
-  return beats;
 }
 
 function changeBeat(newBeat) { beatOnPlay = newBeat; }
 
-renderPage(loadBeats());
+loadBeats()
+renderPage(beats);
 
 export { beatOnPlay,
          renderPage,
          changeBeat,
          barAudioPlayer,
-         ReactDOM
+         ReactDOM,
+         beats
         };
