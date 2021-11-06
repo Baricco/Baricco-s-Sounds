@@ -17,9 +17,19 @@ export default class BarAudioPlayer {
     this.card = card;
   }
 
+  ShuffleSongs() {
+    this.random = !this.random;
+    if (this.random) document.getElementById("audioPlayerShuffle").className = "buttonOn";
+    else document.getElementById("audioPlayerShuffle").className = "";
+  }
+
+  RepeatSongs() {
+    this.repeat = !this.repeat;
+    if (this.repeat) document.getElementById("audioPlayerRepeat").className = "buttonOn";
+    else document.getElementById("audioPlayerRepeat").className = "";
+  }
+
   render() {
-    console.log(this);
-    console.log(this.card);
     return (
       <div>
         <div className = "songAttributes">
@@ -29,9 +39,9 @@ export default class BarAudioPlayer {
         </div>
         <div  className = "AudioPlayerButtons">
           <div id="audio-player-container">
-          <img src = "img/shuffle-icon.png" className = "audioPlayerShuffle" onClick={() => {this.random = !this.random;}}/>
-          <img src = "img/pause-button.png" id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}/>
-          <img src = "img/repeat-icon.png" className = "audioPlayerRepeat" onClick={() => {this.repeat = !this.repeat;}}/>
+          <img src = "img/shuffle-button.svg" id = "audioPlayerShuffle" onClick={() => this.ShuffleSongs()}/>
+          <img src = "img/pause-button.svg" id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}/>
+          <img src = "img/repeat-button.svg" id = "audioPlayerRepeat" onClick={() => this.RepeatSongs()}/>
           <div className="audio-progress" id="audio-progress">
           <div id="draggable-point" className="ui-widget-content">
           <div id="audio-progress-handle"></div>
@@ -52,8 +62,8 @@ export default class BarAudioPlayer {
   updateAudioBar() {
     if (index.beatOnPlay.beat.currentTime >= index.beatOnPlay.beat.duration) {      //if the song finishes, reset the bar
         this.currentTime = 0.00;
-        document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
-        document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.png";
+        document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.svg";
+        document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.svg";
         clearInterval(this.card.audioPlayerUpdater)
         this.alreadyPlayedBeats++;
     }

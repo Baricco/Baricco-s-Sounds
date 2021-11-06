@@ -16,18 +16,20 @@ export default class Card {
   playSong() {
     if(index.beatOnPlay.beat != null && index.beatOnPlay.id != this.id) {  //stop the song that is currently playing
       index.beatOnPlay.beat.pause();
+      this.dehighlightPreviousCard();
       clearInterval(index.beatOnPlay.audioPlayerUpdater);
       index.beatOnPlay.beat.currentTime = 0.00;
       index.barAudioPlayer.currentTime = 0.00;
       if (index.beatOnPlay.id == null) { index.beatOnPlay.id = this.id; }
-      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
-      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.png";
+      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.svg";
+      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.svg";
     }
     else if (index.beatOnPlay.id == this.id) {
       index.beatOnPlay.beat.pause();
+      this.dehighlightPreviousCard();
       clearInterval(index.beatOnPlay.audioPlayerUpdater);
-      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.png";
-      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.png";
+      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.svg";
+      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.svg";
       this.resumeTime = index.beatOnPlay.beat.currentTime;
      index.beatOnPlay.id = null;
       return;
@@ -42,12 +44,22 @@ export default class Card {
     index.barAudioPlayer.currentTime = this.resumeTime;
     index.beatOnPlay.beat.play();                                   //play the new song
     index.beatOnPlay.audioPlayerUpdater = setInterval(() => index.barAudioPlayer.updateAudioBar(), 10);
-    document.getElementById(this.id + "play-pauseButton").src = "img/pause-button.png";
-    document.getElementById("audioPlayerBarPlayPauseButton").src = "img/pause-button.png";
+    document.getElementById(this.id + "play-pauseButton").src = "img/pause-button.svg";
+    document.getElementById("audioPlayerBarPlayPauseButton").src = "img/pause-button.svg";
     
   }
 
+  highlightCard() {
+    document.getElementById(this.id).style.boxShadow = "0 0 15px 0px var(--purple)";
+  }
+
+  dehighlightPreviousCard() {
+    try { document.getElementById(index.beatOnPlay.id).style.boxShadow = ""; } catch(e) { return; }
+  }
+
   startSong() {
+    this.dehighlightPreviousCard();
+    this.highlightCard();
     this.playSong();
     index.barAudioPlayer.changeBeat(this);
     document.getElementById("BarAudioPlayer").style.visibility = "visible";
@@ -64,7 +76,7 @@ export default class Card {
         <div className="Content">
           <h3>{this.name}</h3>
           <p className="genre">{this.genre}</p>
-          <img src="img/play-button.png" id = {this.id + "play-pauseButton"} className="play-pauseButton" onClick={() => this.startSong()}/>
+          <img src="img/play-button.svg" id = {this.id + "play-pauseButton"} className="play-pauseButton" onClick={() => this.startSong()}/>
         </div>
       </div>
     );

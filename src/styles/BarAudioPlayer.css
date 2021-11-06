@@ -77,6 +77,7 @@
 
 #audioPlayerBarPlayPauseButton {
   position: relative;
+  cursor: pointer;
   width:40px;
   height:40px;
   margin:0px;
@@ -93,9 +94,10 @@
   bottom:40px;
 }
 
-.audioPlayerShuffle {
+#audioPlayerShuffle {
   position: relative;
   width:32px;
+  cursor: pointer;
   height:32px;
   margin:0px;
   padding:0px;
@@ -105,14 +107,27 @@
   margin-bottom: 15px;
 }
 
-.audioPlayerRepeat {
+#audioPlayerRepeat {
   position: relative;
-  width:27px;
-  height:27px;
+  width:32px;
+  cursor: pointer;
+  height:32px;
   margin:0px;
   padding:0px;
   margin-bottom: 10px;
   top:0px;
   margin-left: 25px;
   margin-bottom: 15px;
+}
+
+.buttonOn .Livello_2 {
+  fill:var(--purple);
+}
+
+#audioPlayerShuffle:hover #Livello_1 {
+  fill:var(--grey);
+}
+
+#audioPlayerRepeat:hover #Livello_1 {
+  fill:var(--grey);
 }
