@@ -3,12 +3,14 @@
   display: flex;
   width: 40%;
   border-radius: 10px;
+  margin:0px;
   left:30%;
   position: relative;
   background-color: var(--grey);
 }
 .audio-progress .bar {
   height: 100%;
+  margin:0px;
   background-color: var(--purple);
   border-radius: 10px;
   width:0%;
@@ -77,6 +79,7 @@
 
 #audioPlayerBarPlayPauseButton {
   position: relative;
+  display: inline-block;
   cursor: pointer;
   width:40px;
   height:40px;
@@ -96,6 +99,7 @@
 
 #audioPlayerShuffle {
   position: relative;
+  display: inline-block;
   width:32px;
   cursor: pointer;
   height:32px;
@@ -107,8 +111,32 @@
   margin-bottom: 15px;
 }
 
+#audioPlayerPrevious {
+  position: relative;
+  display: inline-block;
+  width:32px;
+  cursor: pointer;
+  height:32px;
+  margin:0px;
+  padding:0px;
+  top:0px;
+}
+
+#audioPlayerNext {
+  position: relative;
+  display: inline-block;
+  width:32px;
+  cursor: pointer;
+  height:32px;
+  margin:0px;
+  padding:0px;
+  top:0px;
+
+}
+
 #audioPlayerRepeat {
   position: relative;
+  display: inline-block;
   width:32px;
   cursor: pointer;
   height:32px;
@@ -120,14 +148,22 @@
   margin-bottom: 15px;
 }
 
-.buttonOn .Livello_2 {
+.cls-1 {
+  fill:#fff;
+}
+
+.buttonOn .cls-1 {
   fill:var(--purple);
 }
 
-#audioPlayerShuffle:hover #Livello_1 {
+#audioPlayerShuffle:hover .Livello_1 {
   fill:var(--grey);
 }
 
-#audioPlayerRepeat:hover #Livello_1 {
+#audioPlayerRepeat:hover .Livello_1 {
+  fill:var(--grey);
+}
+
+#audioPlayerBarPlayPauseButton:hover .Livello_1 {
   fill:var(--grey);
 }

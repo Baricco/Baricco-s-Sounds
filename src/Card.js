@@ -21,15 +21,15 @@ export default class Card {
       index.beatOnPlay.beat.currentTime = 0.00;
       index.barAudioPlayer.currentTime = 0.00;
       if (index.beatOnPlay.id == null) { index.beatOnPlay.id = this.id; }
-      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.svg";
-      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.svg";
+      index.ReactDOM.render(index.playButton, document.getElementById(this.id + "play-pauseButton"));
+      index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));;
     }
     else if (index.beatOnPlay.id == this.id) {
       index.beatOnPlay.beat.pause();
       this.dehighlightPreviousCard();
       clearInterval(index.beatOnPlay.audioPlayerUpdater);
-      document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.svg";
-      document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.svg";
+      index.ReactDOM.render(index.playButton, document.getElementById(this.id + "play-pauseButton"));
+      index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
       this.resumeTime = index.beatOnPlay.beat.currentTime;
      index.beatOnPlay.id = null;
       return;
@@ -44,8 +44,8 @@ export default class Card {
     index.barAudioPlayer.currentTime = this.resumeTime;
     index.beatOnPlay.beat.play();                                   //play the new song
     index.beatOnPlay.audioPlayerUpdater = setInterval(() => index.barAudioPlayer.updateAudioBar(), 10);
-    document.getElementById(this.id + "play-pauseButton").src = "img/pause-button.svg";
-    document.getElementById("audioPlayerBarPlayPauseButton").src = "img/pause-button.svg";
+    index.ReactDOM.render(index.pauseButton, document.getElementById(this.id + "play-pauseButton"));
+    index.ReactDOM.render(index.pauseButton, document.getElementById("audioPlayerBarPlayPauseButton"));
     
   }
 
@@ -76,7 +76,7 @@ export default class Card {
         <div className="Content">
           <h3>{this.name}</h3>
           <p className="genre">{this.genre}</p>
-          <img src="img/play-button.svg" id = {this.id + "play-pauseButton"} className="play-pauseButton" onClick={() => this.startSong()}/>
+          <div id = {this.id + "play-pauseButton"} className="play-pauseButton" onClick={() => this.startSong()}>{index.playButton}</div>
         </div>
       </div>
     );
