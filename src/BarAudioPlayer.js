@@ -13,14 +13,23 @@ export default class BarAudioPlayer {
     this.alreadyPlayedBeats = 0;
   }
 
+  createQueue() { return index.beats.slice(this.card.index, index.beats.length).concat(index.beats.slice(0, this.card.index)); }
+
   changeBeat(card) {
     this.card = card;
   }
 
   shuffleSongs() {
     this.random = !this.random;
-    if (this.random) document.getElementById("audioPlayerShuffle").className = "buttonOn";
-    else document.getElementById("audioPlayerShuffle").className = "";
+    if (this.random) {
+      document.getElementById("audioPlayerShuffle").className = "buttonOn";
+      this.randomizeQueue();
+    }
+    else {
+      document.getElementById("audioPlayerShuffle").className = "";
+      this.queue = this.createQueue();
+      this.alreadyPlayedBeats = this.card.index;
+    }
   }
 
   repeatSongs() {
@@ -30,14 +39,22 @@ export default class BarAudioPlayer {
   }
 
   previousSong() {
-
+    this.currentTime = 0.00;
+    index.ReactDOM.render(index.playButton, document.getElementById(this.card.id + "play-pauseButton"));
+    index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
+    clearInterval(this.card.audioPlayerUpdater);
+    this.alreadyPlayedBeats--;
+    this.queue.at(this.alreadyPlayedBeats % this.queue.length).startSong();
   }
 
   nextSong() {
-
+    this.currentTime = 0.00;
+    index.ReactDOM.render(index.playButton, document.getElementById(this.card.id + "play-pauseButton"));
+    index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
+    clearInterval(this.card.audioPlayerUpdater);
+    this.alreadyPlayedBeats++;
+    this.queue.at(this.alreadyPlayedBeats % this.queue.length).startSong();
   }
-
-//bisogna cambaire i tag img con dei tag svg o simili per poter cambiare il css
 
   render() {
     return (
@@ -67,20 +84,22 @@ export default class BarAudioPlayer {
   }
 
   randomizeQueue() {
-    //randomize the queue of beats
+    this.queue.sort(() => Math.random() - 0.5);
   }
 
   updateAudioBar() {
     if (index.beatOnPlay.beat.currentTime >= index.beatOnPlay.beat.duration) {      //if the song finishes, reset the bar
         this.currentTime = 0.00;
-        document.getElementById(index.beatOnPlay.id + "play-pauseButton").src = "img/play-button.svg";
-        document.getElementById("audioPlayerBarPlayPauseButton").src = "img/play-button.svg";
-        clearInterval(this.card.audioPlayerUpdater)
-        this.alreadyPlayedBeats++;
+        index.ReactDOM.render(index.playButton, document.getElementById(this.card.id + "play-pauseButton"));
+        index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
+        if (this.repeat) { this.card.startSong(); }
+        else {
+          this.alreadyPlayedBeats++;
+          this.queue.at(this.alreadyPlayedBeats).startSong();
+        }
+        clearInterval(this.card.audioPlayerUpdater);
     }
-    //if (this.repeat) { this.card.startSong(); }
-    //else if (this.random) if (this.isRandom) this.randomizeQueue();
-    //else this.queue[this.alreadyPlayedBeats].startSong();
+    //else 
     index.barAudioPlayer.currentTime += 0.01;
     document.getElementById("draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
     document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";

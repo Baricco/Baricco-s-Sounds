@@ -10,6 +10,7 @@ export default class Card {
     this.image = this.path + this.name + ".jpg";
     this.genre = genre;
     this.resumeTime = 0.00;
+    this.index = index.beats.indexOf(this);
     this.id = this.name.replaceAll(" ", "");
   }
 
@@ -31,7 +32,8 @@ export default class Card {
       index.ReactDOM.render(index.playButton, document.getElementById(this.id + "play-pauseButton"));
       index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
       this.resumeTime = index.beatOnPlay.beat.currentTime;
-     index.beatOnPlay.id = null;
+      index.barAudioPlayer.queue = index.barAudioPlayer.createQueue();
+      index.beatOnPlay.id = null;
       return;
     }
 
