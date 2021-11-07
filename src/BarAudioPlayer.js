@@ -1,6 +1,7 @@
 import './styles/BarAudioPlayer.css';
 import * as index from './index';
 
+
 export default class BarAudioPlayer {
 
   constructor(card) {
@@ -8,15 +9,21 @@ export default class BarAudioPlayer {
     this.currentTime = 0.00;
     this.repeat = false;
     this.random = false;
-    this.isRandom = false;
     this.queue = index.beats;
-    this.alreadyPlayedBeats = 0;
+    this.mouseX = 0;
+    this.isDraggingHandle = undefined;
+    this.beatIndex = this.card.index;
+    document.addEventListener('mousemove', e => {
+      this.mouseX = e.offsetX;
+    });
   }
 
   createQueue() { return index.beats.slice(this.card.index, index.beats.length).concat(index.beats.slice(0, this.card.index)); }
 
   changeBeat(card) {
     this.card = card;
+    this.beatIndex = this.card.index;
+    if (!this.random) this.createQueue();
   }
 
   shuffleSongs() {
@@ -27,8 +34,8 @@ export default class BarAudioPlayer {
     }
     else {
       document.getElementById("audioPlayerShuffle").className = "";
+      this.beatIndex = this.card.index;
       this.queue = this.createQueue();
-      this.alreadyPlayedBeats = this.card.index;
     }
   }
 
@@ -42,18 +49,24 @@ export default class BarAudioPlayer {
     this.currentTime = 0.00;
     index.ReactDOM.render(index.playButton, document.getElementById(this.card.id + "play-pauseButton"));
     index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
-    clearInterval(this.card.audioPlayerUpdater);
-    this.alreadyPlayedBeats--;
-    this.queue.at(this.alreadyPlayedBeats % this.queue.length).startSong();
+    this.beatIndex = (this.beatIndex - 1) % this.queue.length;
+    this.queue.at(this.beatIndex).startSong();
   }
 
   nextSong() {
     this.currentTime = 0.00;
     index.ReactDOM.render(index.playButton, document.getElementById(this.card.id + "play-pauseButton"));
     index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
-    clearInterval(this.card.audioPlayerUpdater);
-    this.alreadyPlayedBeats++;
-    this.queue.at(this.alreadyPlayedBeats % this.queue.length).startSong();
+    this.beatIndex = (this.beatIndex + 1) % this.queue.length;
+    this.queue.at(this.beatIndex).startSong();
+  }
+
+  dragHandle() {
+    index.barAudioPlayer.currentTime = this.mouseX;
+    if ((((100 * this.currentTime) / index.beatOnPlay.beat.duration)) < 0) index.barAudioPlayer.currentTime = 0;
+    if ((((100 * this.currentTime) / index.beatOnPlay.beat.duration)) > 100) index.barAudioPlayer.currentTime = index.beatOnPlay.beat.duration;
+    document.getElementById("draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
+    document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";      
   }
 
   render() {
@@ -72,7 +85,7 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
             <div className="audio-progress" id="audio-progress">
-              <div id="draggable-point" className="ui-widget-content">
+              <div id="draggable-point" className="ui-widget-content" draggable={true} onDragStart={() => {this.isDraggingHandle = setInterval(() => this.dragHandle(), 10);}} onDragEnd={() => {clearInterval(this.isDraggingHandle)}}>
                 <div id="audio-progress-handle"></div>
               </div>
               <div id="audio-progress-bar" className="bar"></div>
@@ -94,10 +107,10 @@ export default class BarAudioPlayer {
         index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));
         if (this.repeat) { this.card.startSong(); }
         else {
-          this.alreadyPlayedBeats++;
-          this.queue.at(this.alreadyPlayedBeats).startSong();
+          this.beatIndex++;
+          this.queue.at(this.beatIndex).startSong();
         }
-        clearInterval(this.card.audioPlayerUpdater);
+        clearInterval(this.card.beatIndex);
     }
     //else 
     index.barAudioPlayer.currentTime += 0.01;
