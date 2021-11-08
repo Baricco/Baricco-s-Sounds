@@ -1,7 +1,6 @@
 import './styles/BarAudioPlayer.css';
 import * as index from './index';
 
-
 export default class BarAudioPlayer {
 
   constructor(card) {
@@ -13,8 +12,23 @@ export default class BarAudioPlayer {
     this.mouseX = 0;
     this.isDraggingHandle = undefined;
     this.beatIndex = this.card.index;
-    document.addEventListener('mousemove', e => {
-      this.mouseX = e.offsetX;
+    this.mouseListener = undefined;
+
+    document.addEventListener('mousedown', e => { 
+      if (this.mouseListener === undefined) {
+        this.mouseListener = setInterval(() => {
+          this.mouseX = e.offsetX;
+          console.log("mousedown --- mouseX: " + this.mouseX);
+        }, 1);
+      } 
+
+    });
+
+    document.addEventListener('mouseup', e => { 
+      if (this.mouseListener !== undefined) { 
+        clearInterval(this.mouseListener);
+        console.log("mouseup --- mouseX: " + this.mouseX);
+       }
     });
   }
 
@@ -63,8 +77,9 @@ export default class BarAudioPlayer {
 
   dragHandle() {
     index.barAudioPlayer.currentTime = this.mouseX;
-    if ((((100 * this.currentTime) / index.beatOnPlay.beat.duration)) < 0) index.barAudioPlayer.currentTime = 0;
-    if ((((100 * this.currentTime) / index.beatOnPlay.beat.duration)) > 100) index.barAudioPlayer.currentTime = index.beatOnPlay.beat.duration;
+    if ((((100 * index.barAudioPlayer.currentTime) / index.beatOnPlay.beat.duration)) < 0) index.barAudioPlayer.currentTime = 0;
+    if ((((100 * index.barAudioPlayer.currentTime) / index.beatOnPlay.beat.duration)) > 100) index.barAudioPlayer.currentTime = index.beatOnPlay.beat.duration;
+    console.log(index.barAudioPlayer.currentTime);
     document.getElementById("draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
     document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";      
   }
@@ -81,7 +96,7 @@ export default class BarAudioPlayer {
           <div id="audio-player-container">
           <div id = "audioPlayerPrevious" onClick={() => this.previousSong()}>{index.previousSongButton}</div>
             <div id = "audioPlayerShuffle" onClick={() => this.shuffleSongs()}>{index.shuffleButton}</div>
-            <div id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}>{index.playButton}</div>
+            <div id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}>{index.pauseButton}</div>
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
             <div className="audio-progress" id="audio-progress">
