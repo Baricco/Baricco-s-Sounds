@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import Card from './Card';
 import BarAudioPlayer from './BarAudioPlayer';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 
 var beatOnPlay = {
@@ -116,12 +118,14 @@ var barAudioPlayer = new BarAudioPlayer(new Card("Title", "Genre"));
 function renderPage(beats){
   ReactDOM.render(
       <React.StrictMode>
-        <h1 className = "PageTitle">BARICCO'S BEATS</h1>
-        <div className = "CardsContainer">
-          {beats.map(card => card.render())}
-        </div>
-        <div className="bottomDiv"></div>
-        <div id = "BarAudioPlayer">{barAudioPlayer.render()}</div>
+       <DndProvider backend={HTML5Backend}>
+          <h1 className = "PageTitle">BARICCO'S BEATS</h1>
+          <div className = "CardsContainer">
+            {beats.map(card => card.render())}
+          </div>
+          <div className="bottomDiv"></div>
+          <div id = "BarAudioPlayer">{barAudioPlayer.render()}</div>
+        </DndProvider>
       </React.StrictMode>,
       document.getElementById("root")
   );

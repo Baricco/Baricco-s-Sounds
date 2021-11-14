@@ -1,5 +1,7 @@
 import './styles/BarAudioPlayer.css';
 import * as index from './index';
+import DragDrop from "./DragDrop";
+
 
 export default class BarAudioPlayer {
 
@@ -75,9 +77,7 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
             <div className="audio-progress" id="audio-progress">
-                <div id="draggable-point" className="ui-widget-content">
-                  <div id="audio-progress-handle"></div>
-                </div>
+                <DragDrop />
               <div id="audio-progress-bar" className="bar"></div>
             </div>
           </div>
@@ -108,8 +108,3 @@ export default class BarAudioPlayer {
     document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
   }
 }
-
-
-
-
-// per capire come fare le cose draggable https://www.youtube.com/watch?v=4bzJrEETW4w
