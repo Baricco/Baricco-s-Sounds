@@ -161,5 +161,6 @@ export { beatOnPlay,
          nextSongButton,
          previousSongButton,
          volumeOff,
-         volumeOn
+         volumeOn,
+         React
         };

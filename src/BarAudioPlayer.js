@@ -9,27 +9,7 @@ export default class BarAudioPlayer {
     this.repeat = false;
     this.random = false;
     this.queue = index.beats;
-    this.mouseX = 0;
-    this.isDraggingHandle = undefined;
     this.beatIndex = this.card.index;
-    this.mouseListener = undefined;
-
-    document.addEventListener('mousedown', e => { 
-      if (this.mouseListener === undefined) {
-        this.mouseListener = setInterval(() => {
-          this.mouseX = e.offsetX;
-          console.log("mousedown --- mouseX: " + this.mouseX);
-        }, 1);
-      } 
-
-    });
-
-    document.addEventListener('mouseup', e => { 
-      if (this.mouseListener !== undefined) { 
-        clearInterval(this.mouseListener);
-        console.log("mouseup --- mouseX: " + this.mouseX);
-       }
-    });
   }
 
   createQueue() { return index.beats.slice(this.card.index, index.beats.length).concat(index.beats.slice(0, this.card.index)); }
@@ -76,12 +56,7 @@ export default class BarAudioPlayer {
   }
 
   dragHandle() {
-    index.barAudioPlayer.currentTime = this.mouseX;
-    if ((((100 * index.barAudioPlayer.currentTime) / index.beatOnPlay.beat.duration)) < 0) index.barAudioPlayer.currentTime = 0;
-    if ((((100 * index.barAudioPlayer.currentTime) / index.beatOnPlay.beat.duration)) > 100) index.barAudioPlayer.currentTime = index.beatOnPlay.beat.duration;
-    console.log(index.barAudioPlayer.currentTime);
-    document.getElementById("draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
-    document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";      
+
   }
 
   render() {
@@ -100,9 +75,9 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
             <div className="audio-progress" id="audio-progress">
-              <div id="draggable-point" className="ui-widget-content" draggable={true} onDragStart={() => {this.isDraggingHandle = setInterval(() => this.dragHandle(), 10);}} onDragEnd={() => {clearInterval(this.isDraggingHandle)}}>
-                <div id="audio-progress-handle"></div>
-              </div>
+                <div id="draggable-point" className="ui-widget-content">
+                  <div id="audio-progress-handle"></div>
+                </div>
               <div id="audio-progress-bar" className="bar"></div>
             </div>
           </div>
@@ -134,3 +109,7 @@ export default class BarAudioPlayer {
   }
 }
 
+
+
+
+// per capire come fare le cose draggable https://www.youtube.com/watch?v=4bzJrEETW4w
