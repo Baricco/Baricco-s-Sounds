@@ -65,7 +65,7 @@ export default class BarAudioPlayer {
     return (
       <div>
         <div className = "songAttributes">
-          <img src = {this.card.image} className = "songThumbnail"/>
+          <img src = {this.card.image} alt = "" className = "songThumbnail"/>
           <h4 className = "songTitle">{this.card.name}</h4>
           <h2 className = "songGenre">{this.card.genre}</h2>
         </div>
@@ -102,9 +102,10 @@ export default class BarAudioPlayer {
         }
         clearInterval(this.card.beatIndex);
     }
-    //else 
     index.barAudioPlayer.currentTime += 0.01;
-    document.getElementById("draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
+    console.log(document.getElementById("handle-draggable-point"));
+    console.log(document.getElementById("audio-progress-bar"));
+    document.getElementById("handle-draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
     document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
   }
 }

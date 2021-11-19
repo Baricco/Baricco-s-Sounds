@@ -18,14 +18,14 @@ function DragDrop() {
   };
 
   return (
-    <>
+    <div>
       <div>
-          <Handle/>;
+        <Handle/>;
       </div>
       <div ref={drop}>
         <Handle/>;
       </div>
-    </>
+    </div>
   );
 }
 

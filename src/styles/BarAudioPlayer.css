@@ -67,7 +67,7 @@
   cursor:pointer;
 }
 
-#draggable-point {
+#handle-draggable-point {
   left:0%;
   position:absolute;
 }

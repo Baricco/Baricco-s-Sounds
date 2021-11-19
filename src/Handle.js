@@ -12,7 +12,7 @@ function Handle({ }) {
         }),
     }));
     return (
-        <div id="draggable-point" className="ui-widget-content">
+        <div id="handle-draggable-point" className="ui-widget-content">
             <div id="audio-progress-handle"></div>
         </div>
     );

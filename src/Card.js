@@ -1,6 +1,6 @@
 import './styles/Card.css';
 import * as index from './index';
-import BarAudioPlayer from './BarAudioPlayer';
+//import BarAudioPlayer from './BarAudioPlayer';
 
 export default class Card {
 
@@ -15,17 +15,17 @@ export default class Card {
   }
 
   playSong() {
-    if(index.beatOnPlay.beat != null && index.beatOnPlay.id != this.id) {  //stop the song that is currently playing
+    if(index.beatOnPlay.beat !== null && index.beatOnPlay.id !== this.id) {  //stop the song that is currently playing
       index.beatOnPlay.beat.pause();
       this.dehighlightPreviousCard();
       clearInterval(index.beatOnPlay.audioPlayerUpdater);
       index.beatOnPlay.beat.currentTime = 0.00;
       index.barAudioPlayer.currentTime = 0.00;
-      if (index.beatOnPlay.id == null) { index.beatOnPlay.id = this.id; }
+      if (index.beatOnPlay.id === null) { index.beatOnPlay.id = this.id; }
       index.ReactDOM.render(index.playButton, document.getElementById(this.id + "play-pauseButton"));
       index.ReactDOM.render(index.playButton, document.getElementById("audioPlayerBarPlayPauseButton"));;
     }
-    else if (index.beatOnPlay.id == this.id) {
+    else if (index.beatOnPlay.id === this.id) {
       index.beatOnPlay.beat.pause();
       this.dehighlightPreviousCard();
       clearInterval(index.beatOnPlay.audioPlayerUpdater);
@@ -73,7 +73,7 @@ export default class Card {
   render() {
     return (
       <div className = "Card" id = {this.id}>
-        <img src={this.image}  className="Thumbnail" />
+        <img src={this.image} alt = "" className="Thumbnail" />
         <div className="Content">
           <h3>{this.name}</h3>
           <p className="genre">{this.genre}</p>
