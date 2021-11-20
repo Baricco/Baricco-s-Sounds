@@ -3,6 +3,11 @@ import * as index from './index';
 import DragDrop from "./DragDrop";
 
 
+/*
+  USA LO SLIDER AL POSTO DEL DRAG AND DROP E QUELLE ROBE LI E FAI LA CLASSE AUDIOBAR CON LO SLIDER DENTRO E CON TUTTE 
+  FUNZIONI ASSOCIATE PER SEMPLICITA' E ORDINE
+*/
+
 export default class BarAudioPlayer {
 
   constructor(card) {
@@ -77,7 +82,7 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
             <div className="audio-progress" id="audio-progress">
-                <DragDrop />
+              <Slider></Slider>
               <div id="audio-progress-bar" className="bar"></div>
             </div>
           </div>

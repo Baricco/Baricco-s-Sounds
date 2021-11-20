@@ -2,6 +2,23 @@ import React, { useState } from "react";
 import Handle from "./Handle";
 import { useDrop } from "react-dnd";
 
+
+export const DragDrop = () => {
+  return (
+    <div>
+      <Handle snapToGrid={useState(false)}/>
+    </div>
+  );
+}
+
+export default DragDrop;
+
+
+
+
+/*
+
+
 function DragDrop() {
   //const [board, setBoard] = useState([]);
 
@@ -29,4 +46,26 @@ function DragDrop() {
   );
 }
 
-export default DragDrop;
+
+
+
+
+
+
+
+
+export const Example = () => {
+    const [snapToGridAfterDrop, setSnapToGridAfterDrop] = useState(false);
+    const [snapToGridWhileDragging, setSnapToGridWhileDragging] = useState(false);
+    const handleSnapToGridAfterDropChange = useCallback(() => {
+        setSnapToGridAfterDrop(!snapToGridAfterDrop);
+    }, [snapToGridAfterDrop]);
+    const handleSnapToGridWhileDraggingChange = useCallback(() => {
+        setSnapToGridWhileDragging(!snapToGridWhileDragging);
+    }, [snapToGridWhileDragging]);
+    return (<div>
+			<Container snapToGrid={snapToGridAfterDrop}/>
+			<CustomDragLayer snapToGrid={snapToGridWhileDragging}/>
+
+
+*/
