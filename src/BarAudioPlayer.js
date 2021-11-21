@@ -94,7 +94,7 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}>{index.pauseButton}</div>
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
-            <input type="range" min="0" max="100000" value="0" id="audio-progress-bar"/>
+            <input type="range" min="0" max="100000" value={(((100 * this.currentTime) / index.beatOnPlay.beat.duration) * 1000)} id="audio-progress-bar"/>
           </div>
         </div>
       </div>

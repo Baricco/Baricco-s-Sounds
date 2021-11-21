@@ -9,7 +9,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 var beatOnPlay = {
   id: "",
-  beat: null,
+  beat: new Audio(),
   audioPlayerUpdater: null
 };
 
