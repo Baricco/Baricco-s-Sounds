@@ -1,4 +1,4 @@
-.audio-progress {
+#audio-progress-bar {
   height: .3rem;
   display: flex;
   width: 40%;
@@ -7,13 +7,7 @@
   left:30%;
   position: relative;
   background-color: var(--grey);
-}
-.audio-progress .bar {
-  height: 100%;
-  margin:0px;
-  background-color: var(--purple);
-  border-radius: 10px;
-  width:0%;
+  filter: var(--purple);
 }
 
 .songAttributes {
@@ -50,6 +44,8 @@
   bottom:0px;
 }
 
+/*
+
 #audio-progress-handle {
   display: block;
   position:absolute;
@@ -67,15 +63,17 @@
   cursor:pointer;
 }
 
+
+*/
+
+/*
+
 #handle-draggable-point {
   left:0%;
   position:absolute;
 }
 
-#audio-player-container {
-  position: relative;
-  bottom:30px;
-}
+*/
 
 #audioPlayerBarPlayPauseButton {
   position: relative;

@@ -1,6 +1,5 @@
 import './styles/BarAudioPlayer.css';
 import * as index from './index';
-import DragDrop from "./DragDrop";
 
 
 /*
@@ -66,6 +65,20 @@ export default class BarAudioPlayer {
 
   }
 
+  /*
+          OLD HANDLE
+
+            <div className="audio-progress" id="audio-progress">
+
+            <div id="handle-draggable-point" className="ui-widget-content">
+              <div id="audio-progress-handle"></div>
+            </div>
+              <div id="audio-progress-bar" className="bar"></div>
+            </div>
+  
+  
+  */
+
   render() {
     return (
       <div>
@@ -81,10 +94,7 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}>{index.pauseButton}</div>
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
-            <div className="audio-progress" id="audio-progress">
-              <Slider></Slider>
-              <div id="audio-progress-bar" className="bar"></div>
-            </div>
+            <input type="range" min="0" max="100000" value="0" id="audio-progress-bar"/>
           </div>
         </div>
       </div>
@@ -108,9 +118,8 @@ export default class BarAudioPlayer {
         clearInterval(this.card.beatIndex);
     }
     index.barAudioPlayer.currentTime += 0.01;
-    console.log(document.getElementById("handle-draggable-point"));
-    console.log(document.getElementById("audio-progress-bar"));
-    document.getElementById("handle-draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
-    document.getElementById("audio-progress-bar").style.width = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
+    //document.getElementById("handle-draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
+    document.getElementById("audio-progress-bar").value = (((100 * this.currentTime) / index.beatOnPlay.beat.duration) * 1000);
+
   }
 }
