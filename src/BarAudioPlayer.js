@@ -1,5 +1,6 @@
 import './styles/BarAudioPlayer.css';
 import * as index from './index';
+import Slider from "@material-ui/core/Slider";
 
 
 /*
@@ -66,15 +67,21 @@ export default class BarAudioPlayer {
   }
 
   /*
-          OLD HANDLE
-
-            <div className="audio-progress" id="audio-progress">
-
-            <div id="handle-draggable-point" className="ui-widget-content">
-              <div id="audio-progress-handle"></div>
-            </div>
-              <div id="audio-progress-bar" className="bar"></div>
-            </div>
+  <div className="time-slider-wrapper">
+          <Slider
+            value={time}
+            min={0}
+            max={duration}
+            step={1}
+            onChangeCommitted={(event, newValue) => {
+              event.preventDefault();
+              if (duration) {
+                player.current.seekTo(newValue);
+                setTime(newValue);
+              }
+            }}
+          />
+        </div>
   
   
   */
