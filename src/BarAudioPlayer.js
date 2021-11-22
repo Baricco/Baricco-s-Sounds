@@ -101,7 +101,21 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}>{index.pauseButton}</div>
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
-            <input type="range" min="0" max="100000" value={(((100 * this.currentTime) / index.beatOnPlay.beat.duration) * 1000)} id="audio-progress-bar"/>
+            <div id="audio-progress-bar">
+              <Slider
+                value={(((100 * this.currentTime) / index.beatOnPlay.beat.duration) * 1000)}
+                min={0}
+                max={100000}
+                step={0.001}
+                onChangeCommitted={(event, newValue) => {
+                  event.preventDefault();
+                  if (duration) {
+                    player.current.seekTo(newValue);
+                    setTime(newValue);
+                  }
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
