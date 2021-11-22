@@ -62,30 +62,6 @@ export default class BarAudioPlayer {
     this.queue.at(this.beatIndex).startSong();
   }
 
-  dragHandle() {
-
-  }
-
-  /*
-  <div className="time-slider-wrapper">
-          <Slider
-            value={time}
-            min={0}
-            max={duration}
-            step={1}
-            onChangeCommitted={(event, newValue) => {
-              event.preventDefault();
-              if (duration) {
-                player.current.seekTo(newValue);
-                setTime(newValue);
-              }
-            }}
-          />
-        </div>
-  
-  
-  */
-
   render() {
     return (
       <div>
@@ -101,26 +77,22 @@ export default class BarAudioPlayer {
             <div id = "audioPlayerBarPlayPauseButton" onClick={() => this.card.startSong()}>{index.pauseButton}</div>
             <div id = "audioPlayerRepeat" onClick={() => this.repeatSongs()}>{index.repeatButton}</div>
             <div id = "audioPlayerNext" onClick={() => this.nextSong()}>{index.nextSongButton}</div>
-            <div id="audio-progress-bar">
               <Slider
-                value={(((100 * this.currentTime) / index.beatOnPlay.beat.duration) * 1000)}
+                id = "audio-progress-bar"
                 min={0}
                 max={100000}
-                step={0.001}
                 onChangeCommitted={(event, newValue) => {
-                  event.preventDefault();
-                  if (duration) {
-                    player.current.seekTo(newValue);
-                    setTime(newValue);
-                  }
+                  console.log("CAZZOCULO NUOVO VALORE = " + newValue + "    " + index.barAudioPlayer.currentTime);
+                  index.barAudioPlayer.currentTime = newValue;
+                  index.beatOnPlay.beat.currentTime = newValue;
                 }}
               />
-            </div>
           </div>
         </div>
       </div>
     );
   }
+
 
   randomizeQueue() {
     this.queue.sort(() => Math.random() - 0.5);
@@ -138,9 +110,8 @@ export default class BarAudioPlayer {
         }
         clearInterval(this.card.beatIndex);
     }
-    index.barAudioPlayer.currentTime += 0.01;
-    //document.getElementById("handle-draggable-point").style.left = (((100 * this.currentTime) / index.beatOnPlay.beat.duration)) + "%";
-    document.getElementById("audio-progress-bar").value = (((100 * this.currentTime) / index.beatOnPlay.beat.duration) * 1000);
-
+    index.barAudioPlayer.currentTime += 1;
+    console.log(document.getElementById("audio-progress-bar").value);
+    document.getElementById("audio-progress-bar").value = ((this.currentTime / index.beatOnPlay.beat.duration) * 1000);
   }
 }
