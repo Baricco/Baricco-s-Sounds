@@ -111,7 +111,8 @@ export default class BarAudioPlayer {
         clearInterval(this.card.beatIndex);
     }
     index.barAudioPlayer.currentTime += 1;
-    console.log(document.getElementById("audio-progress-bar").value);
+    console.log("before - " + document.getElementById("audio-progress-bar").value);
     document.getElementById("audio-progress-bar").value = ((this.currentTime / index.beatOnPlay.beat.duration) * 1000);
+    console.log("after - " + document.getElementById("audio-progress-bar").value);
   }
 }
